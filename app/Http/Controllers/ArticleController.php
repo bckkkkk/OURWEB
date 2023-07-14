@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     /**
+     * 設定哪項功能不需登錄即可查看
+     */
+    public function __construct(){
+        $this->middleware('auth')->except(methods:['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()

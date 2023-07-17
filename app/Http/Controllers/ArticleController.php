@@ -19,7 +19,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(3);
+        return view('articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -27,7 +28,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = $request->validate([
+            'title' => 'required',
+            'content' => 'required|min:50',
+			'summary' => 'required|min:10',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ]);
+
+        auth() -> user() -> articles() -> create($content);
+        return redirect() -> route('articles.index') -> with('notice', "文章新增成功！");
     }
 
     /**
@@ -43,7 +53,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        $article = Article::find($article);
+        return view('articles.show', ['article' => $article]);
     }
 
     /**
@@ -51,7 +62,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $article = auth() -> user() -> articles -> find($article);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
@@ -59,7 +71,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article = auth() -> user() -> articles -> find($article); 
+        $content = $request->validate([
+            'title' => 'required',
+            'content' => 'required|min:50',
+			'summary' => 'required|min:10',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ]);
+        $article -> update($content);
+        return redirect() -> route('articles.index') -> with('notice', "文章更新成功！");
     }
 
     /**
@@ -67,6 +88,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article = auth() -> user() -> articles -> find($id);
+        $article -> delete();
+        return redirect() -> route('root') -> with('notice', "文章已刪除！");
     }
 }

@@ -29,6 +29,9 @@
 
             <!-- Page Content -->
             <main>
+				@if(session()->has('notice'))
+					<div class="bg-indigo-150 px-3 py-2 text-center text-white"> {{session() -> get('notice')}} </div>
+				@endif
                 {{ $slot }}
             </main>
         </div>

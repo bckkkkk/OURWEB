@@ -53,7 +53,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $article = Article::find($article);
+        //$article = Article::find($article);
         return view('articles.show', ['article' => $article]);
     }
 

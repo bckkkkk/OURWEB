@@ -8,6 +8,13 @@
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+		
+        <!-- Gender -->
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('Gender')" />
+            <x-radio-input id="gender" class="mt-1" type="radio" name="gender" :options="['male', 'female', 'others']" required />
+			<x-input-error :messages="$errors->get('gender')" class="mt-2" />
+		</div>
 
         <!-- Email Address -->
         <div class="mt-4">

@@ -12,7 +12,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href = "{{ route('articles.show', $article) }}"> {{$article->title}} </a> 
+                    <a href = "{{ route('articles.show', $article) }}"> {{ $article->title }} </a> 
+                    <p class = "text-lg text-gray-700 p-2">
+						{{ $article->summary }}
+					</P>
 					<div class = "flex">
 					<a class = "mr-2" href = "{{route('articles.edit', $article)}}"> 編輯 </a>
 					<form action = "{{ route('articles.destroy', $article) }}" method = "post">

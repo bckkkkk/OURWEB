@@ -29,6 +29,7 @@
 
 						</div>
 
+
 						<div class="field my-2" >
 							<lable for=""> {{__("內文")}} </lable>
 							<textarea name = "content" cols = "30" rows = "10" class = "border-gray-300 p-2" >{{ $article -> content }}</textarea>

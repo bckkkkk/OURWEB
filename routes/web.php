@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('articles',\App\Http\Controllers\ArticleController::class);
+Route::resource('prefers',\App\Http\Controllers\PreferController::class)
+	->only(['store'])
+	->middleware(['auth', 'verified']);
 
 Route::get('/', function () {
     return view('welcome');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prefer;
+use App\Models\Article;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 
 class PreferController extends Controller
@@ -26,9 +28,11 @@ class PreferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, Article $article)
+	{	
+		auth()->user()->preferArticles()->save(Article::find($request->article_id));
+		
+		return redirect() -> route('articles.index') -> with('notice',"");
     }
 
     /**

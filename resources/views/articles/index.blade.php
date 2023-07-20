@@ -15,6 +15,13 @@
                     <div class="flex justify-between items-center">
                         <div class="font-semibold">
                             <a href = "{{ route('articles.show', $article) }}"> {{ $article->title }} </a> 
+							
+							<!--加了prefer的按鍵，很醜抱歉了-->
+							<form method="POST" action="{{ route('prefers.store') }}">
+								@csrf
+								<x-primary-button name="article_id" value="{{ $article->id }}" class="mt-4">{{ __('prefers') }}</x-primary-button>
+							</form>
+							
                         </div>
 
                         <x-dropdown>

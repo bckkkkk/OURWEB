@@ -88,7 +88,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        $article = auth() -> user() -> articles -> find($id);
+        $article = auth() -> user() -> articles -> find($aricle);
         $article -> delete();
         return redirect() -> route('root') -> with('notice', "文章已刪除！");
     }

@@ -40,7 +40,7 @@
                         </x-dropdown>
                     </div>
 
-                    <div class = "ml-2 text-gray-600 py-4">
+                    <div class = "ml-2 text-base text-gray-500 py-4">
 						{{ $article->summary }}
                     </div>
 
@@ -49,4 +49,5 @@
         </div>
     </div>
 	@endforeach
+    {{ $articles -> links() }}
 </x-app-layout>

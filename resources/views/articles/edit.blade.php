@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('文章列表') }}
+            {{ __('修改活動內容') }}
         </h2>
     </x-slot>
 	
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+                <div class="p-6 text-gray-900 m-6 text-center">
                      @if($errors->any())
 						<div class = "error p-3 bg-red-150 text-white font-thin rounded">
 							<ul>
@@ -23,43 +23,44 @@
 					<form action = "{{ route('articles.update', $article) }}" method = "post">  
 						@csrf
 						@method('patch')
-						<div class="field my-2">
-							<lable for=""> {{__("標題")}}</lable>
-							<input type = "text" value="{{ $article -> title }}" name = "title" class = "border-gray-300 p-2">
+						<div class="field my-2 ">
+							<lable for="" class="block mb-2"> {{__("標題")}}</lable>
+							<input type = "text" value="{{ $article -> title }}" name = "title" class = "w-2/5 border-gray-300 p-2 mx-2">
 
 						</div>
 
-
 						<div class="field my-2" >
-							<lable for=""> {{__("內文")}} </lable>
-							<textarea name = "content" cols = "30" rows = "10" class = "border-gray-300 p-2" >{{ $article -> content }}</textarea>
+							<lable for="" class="block mb-2"> {{__("內文")}} </lable>
+							<textarea name = "content" rows = "20" class = "block w-4/5 m-auto border-gray-300 p-2 " >{{ $article -> content }}</textarea>
 
 						</div>
 						
-						<div class="field my-2" >
-							<lable for=""> {{__("簡介")}} </lable>
-							<textarea name = "summary" cols = "30" rows = "2" class = "border-gray-300 p-2" >{{ $article -> summary }}</textarea>
+						<div class="field my-2 " >
+							<lable for="" class="block mb-2"> {{__("簡介")}} </lable>
+							<textarea name = "summary" rows = "5" class = "block w-4/5 m-auto border-gray-300 p-2" >{{ $article -> summary }}</textarea>
 
 						</div>
 
-						<div class="field my-2">
+						<div class="field my-2 ">
 							<lable for=""> {{__("開始時間")}} </lable>
-							<input type = "date" value="{{ $article -> start_time }}" name = "start_time" class = "border-gray-300 p-2">
+							<input type = "date" value="{{ $article -> start_time }}" name = "start_time" class = "border-gray-300 p-2 mx-2">
 
 						</div>
 
-						<div class="field my-2">
+						<div class="field my-2 ">
 							<lable for=""> {{__("結束時間")}} </lable>
-							<input type = "date" value="{{ $article -> end_time }}" name = "end_time" class = "border-gray-300 p-2">
+							<input type = "date" value="{{ $article -> end_time }}" name = "end_time" class = "border-gray-300 p-2 mx-2">
 
 						</div>
 
-						<div class="flex">
+						<div class="flex mt-4 space-x-6 justify-center">
 							<div class="actions">
-								<button type = "submit" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"> 修改文章 </button>
+								<button type = "submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("修改活動內容")}} </button>
 
 							</div>
-							<a href = "{{route('articles.index')}}"> 取消修改 </a>
+							<div class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 ">	
+								<a href = "{{route('dashboard')}}" > {{__("取消修改")}} </a>
+							</div>
 						</div>
 					</form>
                 </div>

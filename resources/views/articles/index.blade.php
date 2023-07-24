@@ -1,21 +1,30 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('文章列表') }}
+            {{ __('活動列表') }}
         </h2>
     </x-slot>
 	
-	<a href = "{{route('articles.create')}}"> 新增文章</a>
-    
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">
+        <button type = "submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250">
+            <a href = "{{route('articles.create')}}"> 新增活動</a>
+        </button>
+
+	    
+    </div>
+
+
 	@foreach($articles as $article)
     <div class="py-2 ">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class=" bg-white  shadow-sm sm:rounded-lg divide-y">
                 <div class="text-lg p-6 text-gray-900 ">
                     <div class="flex justify-between items-center">
-                        <div class="font-semibold">
+                        <div class="font-semibold px-4">
                             <a href = "{{ route('articles.show', $article) }}"> {{ $article->title }} </a> 
                         </div>
+
+                        @if ($article->user->is(auth()->user()))
 
                         <x-dropdown>
                             <x-slot name="trigger">
@@ -38,9 +47,11 @@
                                         </form>
                                     </x-slot>
                         </x-dropdown>
+                        @endif
+
                     </div>
 
-                    <div class = "ml-2 text-base text-gray-500 py-4">
+                    <div class = "ml-2 text-base text-gray-500 py-4 px-6">
 						{{ $article->summary }}
                     </div>
 

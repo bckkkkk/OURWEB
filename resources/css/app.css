@@ -9,6 +9,11 @@
 
 .bg-red-150 {
     --tw-bg-opacity: 1;
-    background-color: rgb(237 168 168 / var(--tw-bg-opacity))
+    background-color: rgb(240 161 161 / var(--tw-bg-opacity))
 }
+
+.hover\:bg-indigo-250:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(114 140 176 / var(--tw-bg-opacity));
+  }
 

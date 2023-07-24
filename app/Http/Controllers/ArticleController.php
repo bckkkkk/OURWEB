@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -19,7 +20,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(3);
+        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(10);
         return view('articles.index', ['articles' => $articles]);
     }
 
@@ -45,7 +46,7 @@ class ArticleController extends Controller
         ]);
 
         auth() -> user() -> articles() -> create($content);
-        return redirect() -> route('articles.index') -> with('notice', "文章新增成功！");
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章新增成功！");
     }
 
     /**
@@ -80,7 +81,7 @@ class ArticleController extends Controller
             'end_time' => 'required',
         ]);
         $article -> update($content);
-        return redirect() -> route('articles.index') -> with('notice', "文章更新成功！");
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章更新成功！");
     }
 
     /**
@@ -88,8 +89,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        $article = auth() -> user() -> articles -> find($id);
+        $article = auth() -> user() -> articles -> find($article);
         $article -> delete();
-        return redirect() -> route('root') -> with('notice', "文章已刪除！");
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章已刪除！");
     }
 }

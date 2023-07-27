@@ -14,7 +14,7 @@
                         {{ $article -> content }}
                     </P>
 
-					<a href = "{{route('articles.index')}}"> 回活動列表 </a>
+					<a href = "{{route('dashboard')}}"> 回活動列表 </a>
                 </div>
             </div>
         </div>

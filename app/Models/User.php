@@ -55,4 +55,9 @@ class User extends Authenticatable
 	{
 		return $this->belongsToMany(Article::class, 'prefers');
 	}
+	
+		public function joinArticles(): BelongsToMany
+	{
+		return $this->belongsToMany(Article::class, 'joiners');
+	}
 }

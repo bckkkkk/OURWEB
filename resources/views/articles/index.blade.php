@@ -17,7 +17,7 @@
                             <a href = "{{ route('articles.show', $article) }}"> {{ $article->title }} </a> 
 							
 							<!--加了prefer的按鍵，很醜抱歉了-->
-							<form method="POST" action="{{ route('prefers.store') }}">
+							<form method="POST" action="{{ route('prefers.store', $article) }}">
 								@csrf
 								<x-primary-button name="article_id" value="{{ $article->id }}" class="mt-4">{{ __('prefers') }}</x-primary-button>
 							</form>

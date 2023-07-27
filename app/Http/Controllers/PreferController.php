@@ -28,9 +28,10 @@ class PreferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Article $article)
+    public function store(Request $request)
 	{	
-		auth()->user()->preferArticles()->save(Article::find($request->article_id));
+		//auth()->user()->preferArticles()->create(Article::find($request->article_id));
+		auth()->user()->preferArticles()->syncWithoutDetaching($request->article_id);
 		
 		return redirect() -> route('articles.index') -> with('notice',"");
     }

@@ -15,6 +15,38 @@
                             {{ $article -> content }}
                         </P>
                     </div>
+					
+					<form method="POST" action="{{ route('joiners.store') }}">  
+						@csrf
+						<div class="field my-2">
+							<lable for=""> {{__("note")}}</lable>
+							<input type = "text" value="{{ old('note') }}" name = "note" class = "border-gray-300 p-2">
+
+						</div>
+
+						<div class="field my-2" >
+							<lable for=""> {{__("phone")}} </lable>
+							<textarea name = "phone" cols = "30" rows = "10" class = "border-gray-300 p-2" >{{ old('phone') }}</textarea>
+
+						</div>
+						
+						<div class="field my-2" >
+							<lable for=""> {{__("birthday")}} </lable>
+							<input type="date" name = "birthday" cols = "30" rows = "2" class = "border-gray-300 p-2" >{{ old('birthday') }}</textarea>
+
+						</div>
+
+						<div class="field my-2">
+							<lable for=""> {{__("ID_number")}} </lable>
+							<input type = "text" value="{{ old('ID_number') }}" name = "ID_number" class = "border-gray-300 p-2">
+
+						</div>
+
+						<div class="flex">
+							<div class="actions">
+								<button type = "submit" name="article_id" value="{{ $article->id}}" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"> join </button>
+						</div>
+					</form>
 
 					<a href = "{{route('articles.index')}}"> 回文章列表 </a>
                 </div>

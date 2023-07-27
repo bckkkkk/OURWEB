@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Joiner;
+use App\Models\Article;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 
 class JoinerController extends Controller
@@ -28,7 +30,16 @@ class JoinerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = $request->validate([
+            'note' => 'required',
+            'phone' => 'required',
+			'birthday' => 'required',
+            'ID_number' => 'required',
+        ]);
+		
+		auth()->user()->joinArticles()->syncWithoutDetaching([$request->article_id => $content]);
+		
+		return redirect() -> route('articles.index') -> with('notice',"");
     }
 
     /**

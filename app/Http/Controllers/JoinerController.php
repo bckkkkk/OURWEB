@@ -45,9 +45,10 @@ class JoinerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Joiner $joiner)
+    public function show($article)
     {
-        //
+        $article = Article::find($article);
+        return view('joiners.show', ['article' => $article]);
     }
 
     /**

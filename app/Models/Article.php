@@ -28,6 +28,6 @@ class Article extends Model
 
 	public function joiners(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'joiners');
+        return $this->belongsToMany(User::class, 'joiners') -> withPivot('phone', 'birthday', 'ID_number', 'note') -> withTimestamps();
     }
 }

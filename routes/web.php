@@ -29,7 +29,7 @@ Route::resource('prefers',\App\Http\Controllers\PreferController::class)
     ->only(['store'])
     ->middleware(['auth', 'verified']);
 Route::resource('joiners',\App\Http\Controllers\JoinerController::class)
-    ->only(['store','create'])
+    ->only(['store','create', 'show'])
     ->middleware(['auth', 'verified']);
 
 

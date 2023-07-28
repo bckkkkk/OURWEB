@@ -45,6 +45,9 @@
                                                 {{ __('刪除') }}
                                             </x-dropdown-link>
                                         </form>
+                                        <x-dropdown-link :href="route('joiners.show', $article)">
+                                            {{ __('查看參加資料') }}
+                                        </x-dropdown-link>
                                     </x-slot>
                         </x-dropdown>
                         @endif

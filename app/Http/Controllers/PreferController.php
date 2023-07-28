@@ -28,7 +28,9 @@ class PreferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        auth()->user()->preferArticles()->syncWithoutDetaching($request->article_id);
+
+        return redirect() -> route('dashboard') -> with('notice',"期待與你相遇！");
     }
 
     /**

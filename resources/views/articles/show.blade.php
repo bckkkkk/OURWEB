@@ -14,7 +14,21 @@
                         {{ $article -> content }}
                     </P>
 
-					<a href = "{{route('dashboard')}}"> 回活動列表 </a>
+					<a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
+
+                    <form method="POST" action="{{ route('prefers.store') }}">
+                        @csrf
+                        <x-primary-button name="article_id" value="{{ $article->id }}" class="mt-4">{{ __('prefers') }}</x-primary-button>
+                    </form>
+                    
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">                            
+                        <form method=" " action="{{ route('joiners.create') }}">
+                            @csrf
+                            <x-primary-button name="article_id" value="{{ $article->id }}" class="mt-4">{{ __('報名') }}</x-primary-button>
+                        </form>
+
+                    </div>
+
                 </div>
             </div>
         </div>

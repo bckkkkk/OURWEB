@@ -16,12 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('articles',\App\Http\Controllers\ArticleController::class);
 
+
 /*Route::get('/', function () {
     return view('welcome');
 });   ->middleware(['auth', 'verified'])*/
 
 Route::get('/', [\App\Http\Controllers\ArticleController::class, "index"] 
 )->name('dashboard');
+
+
+Route::resource('prefers',\App\Http\Controllers\PreferController::class)
+    ->only(['store'])
+    ->middleware(['auth', 'verified']);
+Route::resource('joiners',\App\Http\Controllers\JoinerController::class)
+    ->only(['store','create'])
+    ->middleware(['auth', 'verified']);
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('joiners', function (Blueprint $table) {
             //$table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('article')->constrained()->cascadeOnDelete();
+            $table->foreignId('article_id')->constrained()->cascadeOnDelete();
             $table->string('note')->nullable();
             $table->string('phone');
             $table->date('birthday');

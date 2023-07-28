@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Joiner;
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class JoinerController extends Controller
 {
@@ -18,9 +19,10 @@ class JoinerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $article = Article::find($request -> article_id);
+        return view('joiners.create', ['article' => $article]);
     }
 
     /**
@@ -28,7 +30,16 @@ class JoinerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = $request->validate([
+            'note' => '',
+            'phone' => 'required',
+            'birthday' => 'required',
+            'ID_number' => 'required',
+        ]);
+
+        auth()->user()->joinArticles()->syncWithoutDetaching([$request->article_id => $content]);
+
+        return redirect() -> route('dashboard') -> with('notice',"報名完成！");
     }
 
     /**
@@ -62,4 +73,5 @@ class JoinerController extends Controller
     {
         //
     }
+    
 }

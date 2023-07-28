@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Joiner extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'note',
+        'phone',
+        'birtherday',
+        'ID_number'
+    ];
 }

@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     public function joinArticles(): BelongsToMany
     {
-        return $this->belongsToMany(Article::class, 'joiners', 'user_id', 'article_id');
+        return $this->belongsToMany(Article::class, 'joiners', 'user_id', 'article_id') -> withPivot('phone', 'birthday', 'ID_number', 'note');
     }
 }

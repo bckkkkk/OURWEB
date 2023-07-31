@@ -14,19 +14,33 @@
                         {{ $article -> content }}
                     </P>
 
-					<a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
+                    <div class="flex m-6 space-x-6 justify-center">
+                        @if(auth() -> user() -> joinArticles -> find($article -> id))
+                        <div class=" ">                            
+                            <form method=" " action="{{ route('joiners.edit', $article) }}">
+                                @csrf
+                                <button class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("修改報名資料")}} </button>
+                            </form>
+                        </div>
+                        @else
+                        <div class=" ">                            
+                            <form method=" " action="{{ route('joiners.create') }}">
+                                @csrf
+                                <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
+                            </form>
+                        </div>
+                        @endif
 
-                    <form method="POST" action="{{ route('prefers.store') }}">
-                        @csrf
-                        <x-primary-button name="article_id" value="{{ $article->id }}" class="mt-4">{{ __('prefers') }}</x-primary-button>
-                    </form>
-                    
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">                            
-                        <form method=" " action="{{ route('joiners.create') }}">
-                            @csrf
-                            <x-primary-button name="article_id" value="{{ $article->id }}" class="mt-4">{{ __('報名') }}</x-primary-button>
-                        </form>
+                        <div>
+                            <form method="POST" action="{{ route('prefers.store') }}">
+                                @csrf
+                                <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 "> {{__("加入喜歡清單")}} </button>
+                            </form>
+                        </div>
+                    </div>
 
+                    <div class="text-center px-12 pb-4">
+					    <a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
                     </div>
 
                 </div>

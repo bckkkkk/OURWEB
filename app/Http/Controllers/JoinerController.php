@@ -23,7 +23,13 @@ class JoinerController extends Controller
     public function create(Request $request)
     {
         $article = Article::find($request -> article_id);
-        return view('joiners.create', ['article' => $article]);
+        $already = auth() -> user() -> joinArticles -> find($article);
+        if($already)
+            //return redirect() -> route('dashboard') -> with('notice',"已經！");
+            return view('joiners.edit', ['article' => $already]);
+        else    
+            return view('joiners.create', ['article' => $article]);
+
     }
 
     /**

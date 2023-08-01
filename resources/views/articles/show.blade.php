@@ -17,19 +17,19 @@
                     <div class="flex m-6 space-x-6 justify-center">
                     @auth
                         @if(auth() -> user() -> joinArticles -> find($article -> id))
-                        <div class=" ">                            
-                            <form method=" " action="{{ route('joiners.edit', $article) }}">
-                                @csrf
-                                <button class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("修改報名資料")}} </button>
-                            </form>
-                        </div>
+                            <div class=" ">                            
+                                <form method=" " action="{{ route('joiners.edit', $article) }}">
+                                    @csrf
+                                    <button class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("修改報名資料")}} </button>
+                                </form>
+                            </div>
                         @else
-                        <div class=" ">                            
-                            <form method=" " action="{{ route('joiners.create') }}">
-                                @csrf
-                                <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
-                            </form>
-                        </div>
+                            <div class=" ">                            
+                                <form method=" " action="{{ route('joiners.create') }}">
+                                    @csrf
+                                    <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
+                                </form>
+                            </div>
                         @endif
                     @else  
                         <div class=" ">                            

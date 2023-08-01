@@ -15,6 +15,7 @@
                     </P>
 
                     <div class="flex m-6 space-x-6 justify-center">
+                    @auth
                         @if(auth() -> user() -> joinArticles -> find($article -> id))
                         <div class=" ">                            
                             <form method=" " action="{{ route('joiners.edit', $article) }}">
@@ -30,6 +31,14 @@
                             </form>
                         </div>
                         @endif
+                    @else  
+                        <div class=" ">                            
+                            <form method=" " action="{{ route('joiners.create') }}">
+                                @csrf
+                                <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
+                            </form>
+                        </div>
+                    @endauth
 
                         <div>
                             <form method="POST" action="{{ route('prefers.store') }}">
@@ -42,6 +51,7 @@
                     <div class="text-center px-12 pb-4">
 					    <a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
                     </div>
+                    
 
                 </div>
             </div>

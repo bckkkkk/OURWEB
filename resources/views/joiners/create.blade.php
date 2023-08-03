@@ -33,22 +33,29 @@
 
 						</div>
 
-						<div class="field my-2 ">
-							<lable for="" class="block mb-2"> {{__("身分證字號")}}</lable>
-							<input type = "text" value="{{ old('ID_number') }}" name = "ID_number" class = "w-2/5 border-gray-300 p-2 mx-2">
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("身分證字號")}}</p></div>
+							<div class="field my-2 ">
+								<lable for="" class="mb-2"> {{__("")}}</lable>
+								<input type = "text" value="{{ old('ID_number') }}" name = "ID_number" class = "w-2/5 border-gray-300 p-2 mx-2">
 
+							</div>
 						</div>
 						
-						<div class="field my-2 ">
-							<lable for="" class="block mb-2" > {{__("電話號碼")}}</lable>
-							<input type = "text" value="{{ old('phone') }}" name = "phone" class = "w-2/5 border-gray-300 p-2 mx-2 placeholder-gray-300" placeholder="{{ __('ex:0912345678') }}">
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("電話號碼")}}</p></div>
+							<div class="field my-2 ">
+								<lable for="" class="mb-2" > {{__("")}}</lable>
+								<input type = "text" value="{{ old('phone') }}" name = "phone" class = "w-2/5 border-gray-300 p-2 mx-2 placeholder-gray-300" placeholder="{{ __('ex:0912345678') }}">
 
+							</div>
 						</div>
 
                         <div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("備註")}}</p></div>
 							<div class="field my-2" >
-								<lable for="" class="block mb-2"> {{__("備註")}} </lable>
-								<textarea name = "note" rows = "5" class = "block w-4/5 m-auto border-gray-300 p-2 placeholder-gray-300" placeholder="{{ __('有甚麼話想對主辦方說的嗎...') }}">{{ old('note') }}</textarea>
+								<lable for="" class="mb-2"> {{__("")}} </lable>
+								<textarea name = "note" rows = "5" class = "w-4/5 m-auto border-gray-300 p-2 placeholder-gray-300" placeholder="{{ __('有甚麼話想對主辦方說的嗎...') }}">{{ old('note') }}</textarea>
 
 							</div>
 

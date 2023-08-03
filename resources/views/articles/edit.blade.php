@@ -24,21 +24,27 @@
 						@csrf
 						@method('patch')
 						<div class="field my-2 ">
-							<lable for="" class="block mb-2"> {{__("標題")}}</lable>
+							<lable for="" class="mb-2"> {{__("標題")}}</lable>
 							<input type = "text" value="{{ $article -> title }}" name = "title" class = "w-2/5 border-gray-300 p-2 mx-2">
 
 						</div>
 
-						<div class="field my-2" >
-							<lable for="" class="block mb-2"> {{__("內文")}} </lable>
-							<textarea name = "content" rows = "20" class = "block w-4/5 m-auto border-gray-300 p-2 " >{{ $article -> content }}</textarea>
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("內文")}}</p></div>
+							<div class="field my-2" >
+								<lable for="" class="mb-2"> {{__("")}} </lable>
+								<textarea name = "content" rows = "20" class = "w-4/5 m-auto border-gray-300 p-2 " >{{ $article -> content }}</textarea>
 
+							</div>
 						</div>
 						
-						<div class="field my-2 " >
-							<lable for="" class="block mb-2"> {{__("簡介")}} </lable>
-							<textarea name = "summary" rows = "5" class = "block w-4/5 m-auto border-gray-300 p-2" >{{ $article -> summary }}</textarea>
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("簡介")}}</p></div>
+							<div class="field my-2 " >
+								<lable for="" class="mb-2"> {{__("")}} </lable>
+								<textarea name = "summary" rows = "5" class = "w-4/5 m-auto border-gray-300 p-2" >{{ $article -> summary }}</textarea>
 
+							</div>
 						</div>
 
 						<div class="field my-2 ">

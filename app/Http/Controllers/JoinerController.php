@@ -39,9 +39,9 @@ class JoinerController extends Controller
     {
         $content = $request->validate([
             'note' => 'max:255',
-            'phone' => 'required',
+            'phone' => 'required|numeric:10',
             'birthday' => 'required',
-            'ID_number' => 'required',
+            'ID_number' => 'required|min:10|max:10',
         ]);
 
         auth()->user()->joinArticles()->syncWithoutDetaching([$request->article_id => $content]);
@@ -87,9 +87,11 @@ class JoinerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Joiner $joiner)
+    public function destroy($article)
     {
-        //
+        //$article = auth() -> user() -> joinArticles -> find($article);
+        auth()->user()->joinArticles()->detach($article);
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "已取消報名！");
     }
     
 }

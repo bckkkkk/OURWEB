@@ -12,8 +12,16 @@
     background-color: rgb(240 161 161 / var(--tw-bg-opacity))
 }
 
+.hover\:bg-red-250:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(227 136 136 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-indigo-250:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(114 140 176 / var(--tw-bg-opacity));
   }
+
+
+
 

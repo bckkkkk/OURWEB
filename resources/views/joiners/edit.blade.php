@@ -35,22 +35,29 @@
 
 						</div>
 
-						<div class="field my-2 ">
-							<lable for="" class="block mb-2"> {{__("身分證字號")}}</lable>
-							<input type = "text" disabled value="{{ $article -> pivot -> ID_number }}" name = "ID_number" class = "w-2/5 border-gray-300 p-2 mx-2 disabled:bg-slate-50 disabled:text-slate-500">
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("身分證字號")}}</p></div>
+							<div class="field my-2 ">
+								<lable for="" class="mb-2"> {{__("")}}</lable>
+								<input type = "text" disabled value="{{ $article -> pivot -> ID_number }}" name = "ID_number" class = "w-2/5 border-gray-300 p-2 mx-2 disabled:bg-slate-50 disabled:text-slate-500">
 
+							</div>
 						</div>
 						
-						<div class="field my-2 ">
-							<lable for="" class="block mb-2" > {{__("電話號碼")}}</lable>
-							<input type = "text" disabled value="{{ $article -> pivot -> phone }}" name = "phone" class = "w-2/5 border-gray-300 p-2 mx-2 placeholder-gray-300 disabled:bg-slate-50 disabled:text-slate-500" placeholder="{{ __('ex:0912345678') }}">
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("電話號碼")}}</p></div>
+							<div class="field my-2 ">
+								<lable for="" class="mb-2" > {{__("")}}</lable>
+								<input type = "text" disabled value="{{ $article -> pivot -> phone }}" name = "phone" class = "w-2/5 border-gray-300 p-2 mx-2 placeholder-gray-300 disabled:bg-slate-50 disabled:text-slate-500" placeholder="{{ __('ex:0912345678') }}">
 
+							</div>
 						</div>
 
                         <div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("備註")}}</p></div>
 							<div class="field my-2" >
-								<lable for="" class="block mb-2"> {{__("備註")}} </lable>
-								<textarea name = "note" rows = "5" class = "block w-4/5 m-auto border-gray-300 p-2 placeholder-gray-300" placeholder="{{ __('有甚麼話想對主辦方說的嗎...') }}">{{ $article -> pivot -> note }}</textarea>
+								<lable for="" class="mb-2"> {{__("")}} </lable>
+								<textarea name = "note" rows = "5" class = "w-4/5 m-auto border-gray-300 p-2 placeholder-gray-300" placeholder="{{ __('有甚麼話想對主辦方說的嗎...') }}">{{ $article -> pivot -> note }}</textarea>
 
 							</div>
 
@@ -64,6 +71,12 @@
 							<div class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 ">	
 								<a href = "{{route('dashboard')}}" > {{__("取消修改")}} </a>
 							</div>
+							<form method="POST" action="{{ route('joiners.destroy', $article) }}">
+                                @csrf
+                                @method('delete')
+                    			<button type = "submit" class = "px-3 py-1 rounded bg-red-150 text-white hover:bg-red-250"> {{__("取消報名")}} </button>
+
+                            </form>
 						</div>
 					</form>
                 </div>

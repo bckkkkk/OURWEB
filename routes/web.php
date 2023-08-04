@@ -24,9 +24,20 @@ Route::resource('articles',\App\Http\Controllers\ArticleController::class);
 Route::get('/', [\App\Http\Controllers\ArticleController::class, "index"] 
 )->name('dashboard');
 
+Route::get('/events/attend', function () {
+    return view('events.attend');
+}) -> name('attend');
+
+Route::get('/events/interest', function () {
+    return view('events.interest');
+}) -> name('interest');
+
+Route::get('/events/hold', function () {
+    return view('events.hold');
+}) -> name('hold');
 
 Route::resource('prefers',\App\Http\Controllers\PreferController::class)
-    ->only(['store'])
+    ->only(['store','destroy'])
     ->middleware(['auth', 'verified']);
 Route::resource('joiners',\App\Http\Controllers\JoinerController::class)
     ->except('index')

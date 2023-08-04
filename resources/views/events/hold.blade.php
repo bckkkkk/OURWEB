@@ -1,24 +1,39 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('活動列表') }}
-        </h2>
+    <x-slot name="header" >
+        <div class="flex space-x-12">
+            <div class="font-semibold text-xl text-gray-800 leading-tight">
+                <a href="{{ route('attend') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    {{ __('參加的活動') }}
+                </a>
+            </div>
+            <div class="font-semibold text-xl text-gray-800 leading-tight">
+                <a href="{{ route('interest') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    {{ __('喜歡的活動') }}
+                </a>
+            </div>
+            <div class="font-semibold text-xl text-gray-800 leading-tight">
+                <a href="{{ route('hold') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    {{ __('籌辦的活動') }}
+                </a>
+            </div>
+        </div>
     </x-slot>
-	
 
-    <div class="m-6"></div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">
+        <button type = "submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250">
+            <a href = "{{route('articles.create')}}"> 新增活動</a>
+        </button>
+    </div>
 
-	@foreach($articles as $article)
-    <div class="py-2 ">
+	@foreach(auth() -> user() -> articles  as $article)
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class=" bg-white  shadow-sm sm:rounded-lg divide-y">
                 <div class="text-lg p-6 text-gray-900 ">
-                    <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center">
                         <div class="font-semibold px-4">
                             <a href = "{{ route('articles.show', $article) }}"> {{ $article->title }} </a> 
                         </div>
-
-                        @if ($article->user->is(auth()->user()))
 
                         <x-dropdown>
                             <x-slot name="trigger">
@@ -44,7 +59,6 @@
                                         </x-dropdown-link>
                                     </x-slot>
                         </x-dropdown>
-                        @endif
 
                     </div>
 
@@ -57,5 +71,4 @@
         </div>
     </div>
 	@endforeach
-    {{ $articles -> links() }}
 </x-app-layout>

@@ -60,8 +60,9 @@ class PreferController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prefer $prefer)
+    public function destroy($article)
     {
-        //
+        auth()->user()->preferArticles()->detach($article);
+        return redirect() -> route('interest') -> with('notice', "有緣再相會！");
     }
 }

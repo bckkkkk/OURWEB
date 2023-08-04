@@ -16,6 +16,12 @@
                         {{ __('活動列表') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('attend')" :active="request()->routeIs('attend')">
+                        {{ __('我的活動') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             @auth

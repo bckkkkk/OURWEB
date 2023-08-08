@@ -24,20 +24,40 @@
                                 </form>
                             </div>
                         @else
+                        @if($isdate)
                             <div class=" ">                            
                                 <form method=" " action="{{ route('joiners.create') }}">
                                     @csrf
                                     <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
                                 </form>
                             </div>
+                        @else
+                            <div class="">                            
+                                <form method=" " action="{{ route('joiners.create') }}">
+                                    @csrf
+                                    <button name="article_id" value="{{ $article->id }}" disabled class="px-3 py-1 rounded bg-indigo-125 text-white "> {{__("我要報名！")}} </button>
+                                </form>
+                                <p class = "text-sm text-red-500 py-2  ">{{ __("*現在不是報名期間") }}</P>
+                            </div>
+                        @endif
                         @endif
                     @else  
+                        @if($isdate)
                         <div class=" ">                            
                             <form method=" " action="{{ route('joiners.create') }}">
                                 @csrf
                                 <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
                             </form>
                         </div>
+                         @else
+                            <div class="">                            
+                                <form method=" " action="{{ route('joiners.create') }}">
+                                    @csrf
+                                    <button name="article_id" value="{{ $article->id }}" disabled class="px-3 py-1 rounded bg-indigo-125 text-white "> {{__("我要報名！")}} </button>
+                                </form>
+                                <p class = "text-sm text-red-500 py-2  ">{{ __("*現在不是報名期間") }}</P>
+                            </div>
+                         @endif
                     @endauth
 
                         <div>
@@ -49,6 +69,9 @@
                     </div>
 
                     <div class="text-center px-12 pb-4">
+                        @if(!$isdate)
+                            
+                        @endif
 					    <a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
                     </div>
                     

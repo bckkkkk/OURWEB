@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -54,8 +55,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //$article = Article::find($article);
-        return view('articles.show', ['article' => $article]);
+        $startDate = $article -> start_time;
+        $endDate = $article -> end_time;
+        $isdate = Carbon::now()->between($startDate,$endDate);
+        return view('articles.show', ['article' => $article, 'isdate' => $isdate]);
     }
 
     /**

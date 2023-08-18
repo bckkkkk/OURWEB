@@ -22,6 +22,12 @@
                         {{ __('我的活動') }}
                     </x-nav-link>
                 </div>
+				
+				<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('allow.index')" :active="request()->routeIs('allow.index')">
+                        {{ __('allow') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             @auth

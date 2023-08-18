@@ -43,8 +43,9 @@ Route::resource('prefers',\App\Http\Controllers\PreferController::class)
 Route::resource('joiners',\App\Http\Controllers\JoinerController::class)
     ->except('index')
     ->middleware(['auth', 'verified']);
-
-
+	
+Route::resource('allow',\App\Http\Controllers\AllowController::class)
+    ->only(['index', 'update']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

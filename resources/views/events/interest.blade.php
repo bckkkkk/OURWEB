@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex space-x-12">
-            <div class="font-semibold text-xl text-gray-800 leading-tight">
-                <a href="{{ route('attend') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            <div class="text-base text-gray-800 leading-tight">
+                <a href="{{ route('attend') }}" class=" text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                     {{ __('參加的活動') }}
                 </a>
             </div>
@@ -11,11 +11,13 @@
                     {{ __('喜歡的活動') }}
                 </a>
             </div>
-            <div class="font-semibold text-xl text-gray-800 leading-tight">
-                <a href="{{ route('hold') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            @if(auth() -> user() -> allow != 'joiner')
+            <div class="text-base text-gray-800 leading-tight">
+                <a href="{{ route('hold') }}" class=" text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                     {{ __('籌辦的活動') }}
                 </a>
             </div>
+            @endif
         </div>
     </x-slot>
 

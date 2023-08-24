@@ -23,11 +23,6 @@
                     </x-nav-link>
                 </div>
 				
-				<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('allow.index')" :active="request()->routeIs('allow.index')">
-                        {{ __('allow') }}
-                    </x-nav-link>
-                </div>
             </div>
 
             @auth
@@ -48,8 +43,15 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('個人資料') }}
                             </x-dropdown-link>
+
+                            <!-- 權限判斷 -->
+                            @if(Auth::user() -> allow == 'manager')
+                                <x-dropdown-link :href="route('allow.index')" :active="request()->routeIs('allow.index')">
+                                    {{ __('修改權限') }}
+                                </x-dropdown-link>
+                            @endif
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -58,7 +60,7 @@
                                 <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('登出') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -66,7 +68,7 @@
                 </div>
             @else
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"> {{ __('登入 / 註冊') }} </a>
                 </div>
             @endauth
 
@@ -100,8 +102,15 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('個人資料') }}
                     </x-responsive-nav-link>
+
+                    <!-- 權限判斷 -->
+                    @if(Auth::user() -> allow == 'manager')
+                        <x-dropdown-link :href="route('allow.index')" :active="request()->routeIs('allow.index')">
+                            {{ __('修改權限') }}
+                        </x-dropdown-link>
+                    @endif
 
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
@@ -110,7 +119,7 @@
                         <x-responsive-nav-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('登出') }}
                         </x-responsive-nav-link>
                     </form>
                 </div>
@@ -119,7 +128,7 @@
         @else
             <div class="mt-3 space-y-1 pt-4 pb-1 border-t border-gray-200">
                 <x-responsive-nav-link :href="route('login')">
-                    {{ __('Log In') }}
+                    {{ __('登入 / 註冊') }}
                 </x-responsive-nav-link>
             </div>
         @endauth

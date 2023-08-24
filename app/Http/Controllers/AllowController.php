@@ -31,7 +31,14 @@ class AllowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        foreach($request -> user_id as $key => $value)
+        {
+            $User = User::findOrFail($value);
+            $User -> allow = $request -> allow[$key];
+            $User -> save();
+        }
+
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', '權限修改成功！');
     }
 
     /**

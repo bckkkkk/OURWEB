@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(2);
+        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(10);
         return view('articles.index', ['articles' => $articles]);
     }
 

@@ -62,13 +62,7 @@ class AllowController extends Controller
      */
     public function update(Request $request, User $user)
     {
-		$User = User::findOrFail($request->user_id);
-		$content = $request->validate([
-            'allow' => 'required',
-        ]);
-		
-		$User -> update($content);
-        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', $User);
+		//
     }
 
     /**

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 class CreateAdminUserSeeder extends Seeder
@@ -14,13 +16,13 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::create([
+        DB::table('users')->insert([
 			'name' => 'John',
 			'gender' => 'Others',
 			'allow' => 'manager',
 			'email_verified_at' => now(),
 			'email' => 'John@gmail.com',
-			'password' => '12345678',
+			'password' =>  Hash::make('12345678'),
 		]);
     }
 }

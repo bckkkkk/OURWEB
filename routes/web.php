@@ -24,6 +24,22 @@ Route::resource('articles',\App\Http\Controllers\ArticleController::class);
 Route::get('/', [\App\Http\Controllers\ArticleController::class, "index"] 
 )->name('dashboard');
 
+Route::get('/about', function () {
+    return view('footer.about');
+})-> name('about');
+
+Route::get('/apply', function () {
+    return view('footer.apply');
+}) ->middleware(['auth', 'verified']) -> name('apply');
+
+Route::get('/announce', function () {
+    return view('footer.announce');
+}) ->middleware(['auth', 'verified']) -> name('announce');
+
+Route::get('/connection', function () {
+    return view('footer.connection');
+})-> name('connection');
+
 Route::get('/events/attend', function () {
     return view('events.attend');
 }) ->middleware(['auth', 'verified']) -> name('attend');

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 		
 		<style>
+
             #social-links ul{
                 padding-left: 0;
                 display:flex;
@@ -59,5 +60,32 @@
                 {{ $slot }}
             </main>
         </div>
+        <footer>
+            <div class="bg-gray-100 font-sans antialiased">
+                <div class="py-12 px-12 grid grid-cols-12 gap-4">
+                    <div class="col-span-0 lg:col-span-1"></div>
+                    <div class="mx-auto col-span-5 md:col-span-4 lg:col-span-2 sm:px-6  lg:px-8">
+                        <p class="text-base text-indigo-600"> {{__("關於")}} </p>
+                        <div class="text-sm mt-4">
+                            <a href = "{{route('about')}}"> {{ __("關於我們") }} </a>
+                        </div>
+                        <div class="text-sm mt-2">
+                            <a href = "{{route('connection')}}"> {{ __("聯絡我們") }} </a>
+                        </div>
+                    </div>
+                    <div class="mx-auto col-span-5 md:col-span-4 lg:col-span-2 sm:px-6  lg:px-8">
+                        <p class="text-base text-indigo-600"> {{__("幫助")}} </p>
+                        <div class="text-sm mt-4">
+                            <a href = "{{route('apply')}}"> {{ __("申請專業帳號") }} </a>
+                        </div>
+                        <div class="text-sm mt-2">
+                            <a href = "{{route('announce')}}"> {{ __("發布注意事項") }} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
     </body>
+    
 </html>

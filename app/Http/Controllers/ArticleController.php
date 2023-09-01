@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(10);
+        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(1);
         return view('articles.index', ['articles' => $articles]);
     }
 
@@ -55,10 +55,21 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+		$shareButtons = \Share::page(
+            'https://laravel.com/',
+            "come to visist this activity tgt!"
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->pinterest()
+        ->reddit();
+
         $startDate = $article -> start_time;
         $endDate = $article -> end_time;
         $isdate = Carbon::now()->between($startDate,$endDate);
-        return view('articles.show', ['article' => $article, 'isdate' => $isdate]);
+        return view('articles.show', ['article' => $article, 'isdate' => $isdate, 'shareButtons' => $shareButtons] );
     }
 
     /**

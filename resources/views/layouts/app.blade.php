@@ -13,6 +13,30 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+		
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+		
+		<style>
+            #social-links ul{
+                padding-left: 0;
+                display:flex;
+                float:right;
+                padding-bottom: 1.5rem;
+            }
+            #social-links ul li {
+                display:flex;
+            } 
+            #social-links ul li a {
+                padding: 6px;
+                border-radius: 5px;
+                margin: 1px;
+                font-size: 25px;
+                color: #8A9FBD;
+            }
+            #social-links ul li a:hover{
+                color: #728cb0;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

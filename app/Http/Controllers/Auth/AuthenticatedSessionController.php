@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME)->with('notice', "You're logged in!");
+        return redirect()->intended(RouteServiceProvider::HOME)->with('notice', "登入成功！");
     }
 
     /**

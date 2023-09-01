@@ -74,7 +74,9 @@
                         @endif
 					    <a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
                     </div>
-                    
+                    <div>
+						{!! $shareButtons !!}
+					</div>
 
                 </div>
             </div>

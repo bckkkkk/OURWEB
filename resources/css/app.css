@@ -22,6 +22,11 @@
     background-color: rgb(114 140 176 / var(--tw-bg-opacity));
   }
 
+.hover\:bg-indigo-150:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(138 159 189 / var(--tw-bg-opacity));
+  }
+
   .bg-indigo-125 {
     --tw-bg-opacity: 1;
     background-color: rgb(165 180 201 / var(--tw-bg-opacity))

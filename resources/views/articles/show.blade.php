@@ -25,12 +25,22 @@
                             </div>
                         @else
                         @if($isdate)
+                            @if($article -> maximum != NULL && count($article -> joiners) >= $article -> maximum)
+                            <div class="">                            
+                                <form method=" " action="{{ route('joiners.create') }}">
+                                    @csrf
+                                    <button name="article_id" value="{{ $article->id }}"  class="px-3 py-1 rounded bg-indigo-125 text-white hover:bg-indigo-150"> {{__("我要報名！")}} </button>
+                                </form>
+                                <p class = "text-sm text-red-500 py-2  ">{{ __("*報名人數已滿") }}</P>
+                            </div>
+                            @else
                             <div class=" ">                            
                                 <form method=" " action="{{ route('joiners.create') }}">
                                     @csrf
                                     <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
                                 </form>
                             </div>
+                            @endif
                         @else
                             <div class="">                            
                                 <form method=" " action="{{ route('joiners.create') }}">
@@ -43,12 +53,22 @@
                         @endif
                     @else  
                         @if($isdate)
-                        <div class=" ">                            
-                            <form method=" " action="{{ route('joiners.create') }}">
-                                @csrf
-                                <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
-                            </form>
-                        </div>
+                        @if($article -> maximum != NULL && count($article -> joiners) >= $article -> maximum)
+                            <div class="">                            
+                                <form method=" " action="{{ route('joiners.create') }}">
+                                    @csrf
+                                    <button name="article_id" value="{{ $article->id }}"  class="px-3 py-1 rounded bg-indigo-125 text-white hover:bg-indigo-150"> {{__("我要報名！")}} </button>
+                                </form>
+                                <p class = "text-sm text-red-500 py-2  ">{{ __("*報名人數已滿") }}</P>
+                            </div>
+                            @else
+                            <div class=" ">                            
+                                <form method=" " action="{{ route('joiners.create') }}">
+                                    @csrf
+                                    <button name="article_id" value="{{ $article->id }}" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("我要報名！")}} </button>
+                                </form>
+                            </div>
+                            @endif
                          @else
                             <div class="">                            
                                 <form method=" " action="{{ route('joiners.create') }}">
@@ -69,9 +89,6 @@
                     </div>
 
                     <div class="text-center px-12 pb-4">
-                        @if(!$isdate)
-                            
-                        @endif
 					    <a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
                     </div>
                     <div>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Joiner;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class JoinerController extends Controller
 {
@@ -15,6 +17,29 @@ class JoinerController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * blacklist check
+     */
+    public function blackcheck(Request $request)
+    {
+        
+        $article = Article::find($request -> article_id);
+        foreach($request -> user_id as $key => $value)
+        {
+            //$User = $article -> joiners -> find($value);
+            $article -> joiners() -> syncWithoutDetaching([$value => ['blacklist' => $request -> blacklist[$key]]]);
+        }
+
+        $already = $article -> joiners() -> wherePivot('blacklist', 'false') -> get() -> count();
+        if(($article -> maximum) < $already)
+        {
+            return redirect() -> route('joiners.show', $article -> id) -> with('alert', '人數已超過上限！');
+        }
+        else
+            return redirect() -> route('joiners.show', $article -> id) -> with('notice', '修改成功！');
+
     }
 
     /**
@@ -55,7 +80,10 @@ class JoinerController extends Controller
     public function show($article)
     {
         $article = Article::find($article);
-        return view('joiners.show', ['article' => $article]);
+        $blackfalse = $article -> joiners() -> wherePivot('blacklist', 'false') -> get();
+        $notsure = $article -> joiners() -> wherePivot('blacklist', 'notsure') -> get();
+        $blacktrue = $article -> joiners() -> wherePivot('blacklist', 'true') -> get();
+        return view('joiners.show', ['article' => $article, 'notsure' => $notsure, 'blackfalse' => $blackfalse, 'blacktrue' => $blacktrue]);
     }
 
     /**

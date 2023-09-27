@@ -24,6 +24,9 @@ Route::resource('articles',\App\Http\Controllers\ArticleController::class);
 Route::get('/', [\App\Http\Controllers\ArticleController::class, "index"] 
 )->name('dashboard');
 
+Route::post('/joiner/check', [App\Http\Controllers\JoinerController::class, "blackcheck"] 
+)->name('blackcheck');
+
 Route::get('/about', function () {
     return view('footer.about');
 })-> name('about');
@@ -62,6 +65,9 @@ Route::resource('joiners',\App\Http\Controllers\JoinerController::class)
 	
 Route::resource('allow',\App\Http\Controllers\AllowController::class)
     ->only(['index', 'update', 'store']);
+
+Route::resource('checks',\App\Http\Controllers\CheckController::class)
+    ->only(['show', 'update', 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

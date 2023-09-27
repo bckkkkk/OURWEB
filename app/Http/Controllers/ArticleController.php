@@ -39,11 +39,14 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $content = $request->validate([
+            'maximum' => 'numeric|integer',
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',
             'start_time' => 'required',
             'end_time' => 'required',
+            'start_time_event' => 'required',
+            'end_time_event' => 'required'
         ]);
 
         auth() -> user() -> articles() -> create($content);
@@ -88,14 +91,17 @@ class ArticleController extends Controller
     {
         $article = auth() -> user() -> articles -> find($article); 
         $content = $request->validate([
+            'maximum' => 'numeric',
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',
             'start_time' => 'required',
             'end_time' => 'required',
+            'start_time_event' => 'required',
+            'end_time_event' => 'required'
         ]);
         $article -> update($content);
-        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章更新成功！");
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章修改成功！");
     }
 
     /**

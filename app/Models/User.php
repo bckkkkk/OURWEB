@@ -59,6 +59,11 @@ class User extends Authenticatable //implements MustVerifyEmail
 
     public function joinArticles(): BelongsToMany
     {
-        return $this->belongsToMany(Article::class, 'joiners', 'user_id', 'article_id') -> withPivot('phone', 'birthday', 'ID_number', 'note');
+        return $this->belongsToMany(Article::class, 'joiners', 'user_id', 'article_id') -> withPivot('phone', 'birthday', 'ID_number', 'note', 'blacklist');
+    }
+
+    public function attendTable(): BelongsToMany
+    {
+        return $this->belongsToMany(Article::class, 'checks', 'user_id', 'article_id') -> withPivot('checkdate', 'state');
     }
 }

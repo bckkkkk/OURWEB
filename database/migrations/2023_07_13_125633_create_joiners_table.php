@@ -15,6 +15,7 @@ return new class extends Migration
             //$table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('article_id')->constrained()->cascadeOnDelete();
+            $table->enum('blacklist', ['true', 'false','notsure']) -> default('notsure');
             $table->string('note')->nullable();
             $table->string('phone');
             $table->date('birthday');

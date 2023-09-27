@@ -18,7 +18,10 @@ class Article extends Model
 		'content',
 		'start_time',
 		'end_time',
-		'summary'
+		'summary',
+        'maximum',
+        'start_time_event',
+        'end_time_event'
 	];
 	
     public function user(): belongsTo
@@ -28,6 +31,11 @@ class Article extends Model
 
 	public function joiners(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'joiners') -> withPivot('phone', 'birthday', 'ID_number', 'note') -> withTimestamps();
+        return $this->belongsToMany(User::class, 'joiners') -> withPivot('phone', 'birthday', 'ID_number', 'note', 'blacklist') -> withTimestamps();
+    }
+
+    public function attend(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'checks', 'user_id', 'article_id') -> withPivot('checkdate', 'state');
     }
 }

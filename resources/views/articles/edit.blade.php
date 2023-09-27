@@ -47,15 +47,39 @@
 							</div>
 						</div>
 
-						<div class="field my-2 ">
-							<lable for=""> {{__("開始時間")}} </lable>
-							<input type = "date" value="{{ $article -> start_time }}" name = "start_time" class = "border-gray-300 p-2 mx-2">
+						<div class="grid gap-6 mb-6 md:grid-cols-6">
+							<div class="col-span-0 lg:col-span-1"></div>
+							<div class="field my-2 col-span-2 ">
+								<lable for=""> {{__("報名開始")}} </lable>
+								<input type = "date" value="{{ $article -> start_time_event }}" name = "start_time" class = "border-gray-300 p-2 mx-2">
 
+							</div>
+
+							<div class="field my-2 col-span-2 ">
+								<lable for=""> {{__("報名結束")}} </lable>
+								<input type = "date" value="{{ $article -> start_time_event }}" name = "end_time" class = "border-gray-300 p-2 mx-2">
+
+							</div>
+						</div>
+
+						<div class="grid gap-6 mb-6 md:grid-cols-6">
+							<div class="col-span-0 lg:col-span-1"></div>
+							<div class="field my-2 col-span-2 ">
+								<lable for=""> {{__("活動開始")}} </lable>
+								<input type = "date" value="{{ $article -> start_time_event }}" name = "start_time_event" class = "border-gray-300 p-2 mx-2">
+
+							</div>
+
+							<div class="field my-2 col-span-2 ">
+								<lable for=""> {{__("活動結束")}} </lable>
+								<input type = "date" value="{{ $article -> end_time_event }}" name = "end_time_event" class = "border-gray-300 p-2 mx-2">
+
+							</div>
 						</div>
 
 						<div class="field my-2 ">
-							<lable for=""> {{__("結束時間")}} </lable>
-							<input type = "date" value="{{ $article -> end_time }}" name = "end_time" class = "border-gray-300 p-2 mx-2">
+							<lable for="" class="mb-2"> {{__("人數上限")}} </lable>
+							<input type = "text" value="{{  $article -> maximum }}" name = "maximum" class = "w-1/6 border-gray-300 p-2 mx-2" placeholder="{{ __('若無可空白') }}">
 
 						</div>
 

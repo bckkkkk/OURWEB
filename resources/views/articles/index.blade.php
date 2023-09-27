@@ -42,6 +42,9 @@
                                         <x-dropdown-link :href="route('joiners.show', $article)">
                                             {{ __('查看參加資料') }}
                                         </x-dropdown-link>
+                                        <x-dropdown-link :href="route('checks.show', $article)">
+                                            {{ __('點名表') }}
+                                        </x-dropdown-link>
                                     </x-slot>
                         </x-dropdown>
                         @endif

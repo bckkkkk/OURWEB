@@ -27,7 +27,7 @@ class JoinerController extends Controller
         $article = Article::find($request -> article_id);
         $article -> send_already = 1;
         $article -> save();
-        return redirect() -> route('dashboard') -> with('notice',$request -> article_id);
+        return redirect() -> route('dashboard') -> with('notice','');
     }
 
     /**

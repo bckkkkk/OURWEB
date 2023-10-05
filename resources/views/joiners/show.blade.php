@@ -108,7 +108,7 @@
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm"> {{ $notsurelist -> pivot -> note }} </td>
-                                    <td class="px-6 py-2 indent-2"> {{ $joiner -> absence }} / {{ $joiner -> attendance }}</td>
+                                    <td class="px-6 py-2 indent-2"> {{ $notsurelist -> absence }} / {{ $notsurelist -> attendance }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -151,7 +151,7 @@
                                     <td class="px-6 py-2"> {{ $blacklist -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $blacklist -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm"> {{ $blacklist -> pivot -> note }} </td>
-                                    <td class="px-6 py-2 indent-2"> {{ $joiner -> absence }} / {{ $joiner -> attendance }}</td>
+                                    <td class="px-6 py-2 indent-2"> {{ $blacklist -> absence }} / {{ $blacklist -> attendance }}</td>
                                 </tr>
                             </tbody>
                         </table>

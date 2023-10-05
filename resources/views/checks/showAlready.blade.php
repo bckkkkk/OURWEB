@@ -57,10 +57,20 @@
                                         <td class="px-6 py-2 "> {{ $user -> email }} </td>
                                         <td class="px-6 py-2 "> {{ __(" ") }} </td>
                                         <td class="px-6 py-2 "> {{ __(" ") }} </td>
-                                        <td class="px-6 py-2 "><input type="radio" value="present" name="attend[]" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" checked></td>
-                                        <td class="px-6 py-2 "><input type="radio" value="rest" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"></td>
-                                        <td class="px-6 py-2 "><input type="radio" value="absent" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"></td>
-                                        <input type="hidden" name="user_id[]" value="{{$user->id}}">
+                                        @if($user -> pivot -> state == 'present')<!-- 此為已出席 -->
+                                        <td class="px-6 py-2 "><input type="radio" value="present" name="attend[]" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" checked disabled></td>
+                                        <td class="px-6 py-2 "><input type="radio" value="rest" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"disabled></td>
+                                        <td class="px-6 py-2 "><input type="radio" value="absent" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"disabled></td>
+                                        @elseif($user -> pivot -> state == 'rest')<!-- 此為假 -->
+                                        <td class="px-6 py-2 "><input type="radio" value="present" name="attend[]" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" disabled></td>
+                                        <td class="px-6 py-2 "><input type="radio" value="rest" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"checked disabled></td>
+                                        <td class="px-6 py-2 "><input type="radio" value="absent" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"disabled></td>
+                                        @else<!-- 此為缺席 -->
+                                        <td class="px-6 py-2 "><input type="radio" value="present" name="attend[]" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" disabled></td>
+                                        <td class="px-6 py-2 "><input type="radio" value="rest" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"disabled></td>
+                                        <td class="px-6 py-2 "><input type="radio" value="absent" name="attend[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"checked disabled></td>
+                                        @endif
+                                        <!-- <input type="hidden" name="user_id[]" value="{{$user->id}}"> -->
 									</tr>
 								
                             </tbody>
@@ -73,11 +83,8 @@
     @endforeach
     <input type="hidden" name="article" value="{{$article->id}}">
     <div class="flex mt-4 space-x-6 justify-center">
-		<div class="actions">
-            <button type="submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("送出點名表")}} </button>
-		</div>
 		<div class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 ">	
-            <a href = "{{route('checks.show', $article)}}" > {{__("重新選擇")}} </a>
+			<a href = "{{route('dashboard')}}" > {{__("回活動列表")}} </a>
 		</div>
 	</div>
 

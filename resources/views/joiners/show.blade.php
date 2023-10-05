@@ -21,6 +21,7 @@
                                     <th scope="col" class="px-6 py-3">{{ __("生日") }}</th>
                                     <th scope="col" class="px-6 py-3">{{ __("身分證字號") }}</th>
                                     <th scope="col" class="px-6 py-3">{{ __("備註") }}</th>
+                                    <th scope="col" class="px-6 py-3">{{ __("缺席率") }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +65,7 @@
                                     <td class="px-6 py-2"> {{ $joiner -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $joiner -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm"> {{ $joiner -> pivot -> note }} </td>
+                                    <td class="px-6 py-2  indent-2"> {{ $joiner -> absence }} / {{ $joiner -> attendance }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -106,6 +108,7 @@
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm"> {{ $notsurelist -> pivot -> note }} </td>
+                                    <td class="px-6 py-2 indent-2"> {{ $joiner -> absence }} / {{ $joiner -> attendance }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -148,6 +151,7 @@
                                     <td class="px-6 py-2"> {{ $blacklist -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $blacklist -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm"> {{ $blacklist -> pivot -> note }} </td>
+                                    <td class="px-6 py-2 indent-2"> {{ $joiner -> absence }} / {{ $joiner -> attendance }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -157,10 +161,32 @@
         </div>
     </div>
     @endforeach
+    <div class="flex mt-4 space-x-6 max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+		<div class="actions">
+            <button type="submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("確定更改")}} </button> 
+		</div>
+        </form>
+        
+        <div>
+            <form method = "post" action="{{ route('gainCheck') }}">
+                @csrf
+                <input type="hidden" name="article_id" value="{{$article->id}}">
+                <button type="submit" class="px-3 py-1 rounded bg-red-150 text-white hover:bg-red-250">
+                    {{__("取得點名表")}}
+                </button> 
+            </form>
+            <div class="pt-2 text-red-600 text-sm ">	
+                {{__("*取得點名表後無法更改參與名單")}}
+            </div>
+            <div class=" text-red-600 text-sm ">	
+                {{__("*請先確定更改後再取得點名表")}}
+            </div>
+        </div>
+	</div>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">
-        <button type="submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("確定更改")}} </button>  
+    <div class="text-center px-12 p-4">
+		<a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
     </div>
-    </form>
+
 
 </x-app-layout>

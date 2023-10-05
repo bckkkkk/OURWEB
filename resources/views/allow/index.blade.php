@@ -74,6 +74,9 @@
 		</div>
 	</div>
 
+    <div class="text-center px-12 p-4">
+		<a href = "{{route('dashboard')}}"> {{ __("回活動列表") }} </a>
+    </div>
 
     </form>
 

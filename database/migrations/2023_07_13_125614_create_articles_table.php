@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('end_time');
             $table->date('start_time_event');
             $table->date('end_time_event');
+            $table->boolean('send_already') -> default(0);
             $table->integer('maximum')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

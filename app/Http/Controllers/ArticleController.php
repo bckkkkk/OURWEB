@@ -39,7 +39,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $content = $request->validate([
-            'maximum' => 'numeric|integer',
+            'maximum' => '',
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',
@@ -91,7 +91,7 @@ class ArticleController extends Controller
     {
         $article = auth() -> user() -> articles -> find($article); 
         $content = $request->validate([
-            'maximum' => 'numeric',
+            'maximum' => '',
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',

@@ -42,9 +42,11 @@
                                         <x-dropdown-link :href="route('joiners.show', $article)">
                                             {{ __('查看參加資料') }}
                                         </x-dropdown-link>
+                                        @if($article -> send_already == 1)
                                         <x-dropdown-link :href="route('checks.show', $article)">
                                             {{ __('點名表') }}
                                         </x-dropdown-link>
+                                        @endif
                                     </x-slot>
                         </x-dropdown>
                         @endif

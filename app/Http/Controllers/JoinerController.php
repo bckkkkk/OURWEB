@@ -20,6 +20,17 @@ class JoinerController extends Controller
     }
 
     /**
+     * 點名表獲取
+     */
+    public function gainCheck(Request $request)
+    {
+        $article = Article::find($request -> article_id);
+        $article -> send_already = 1;
+        $article -> save();
+        return redirect() -> route('dashboard') -> with('notice',$request -> article_id);
+    }
+
+    /**
      * blacklist check
      */
     public function blackcheck(Request $request)
@@ -33,7 +44,7 @@ class JoinerController extends Controller
         }
 
         $already = $article -> joiners() -> wherePivot('blacklist', 'false') -> get() -> count();
-        if(($article -> maximum) < $already)
+        if(($article -> maximum) < $already && ($article -> maximum) != NULL)
         {
             return redirect() -> route('joiners.show', $article -> id) -> with('alert', '人數已超過上限！');
         }

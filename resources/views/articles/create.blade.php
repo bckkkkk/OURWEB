@@ -74,9 +74,9 @@
 							</div>
 						</div>
 
-						<div class="field my-2 ">
+						<div class="field my-2">
 							<lable for="" class="mb-2"> {{__("人數上限")}}</lable>
-							<input type = "text" value="{{ old('maximum') }}" name = "maximum" class = "w-1/6 border-gray-300 p-2 mx-2" placeholder="{{ __('若無可為空') }}">
+							<input type = "text" value="{{ old('maximum') }}" name = "maximum" class = "w-3/12 border-gray-300 p-2 mx-2" placeholder="{{ __('請填入數字(若無可空白)') }}">
 						</div>
 
 

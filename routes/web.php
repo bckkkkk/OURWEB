@@ -27,6 +27,14 @@ Route::get('/', [\App\Http\Controllers\ArticleController::class, "index"]
 Route::post('/joiner/check', [App\Http\Controllers\JoinerController::class, "blackcheck"] 
 )->name('blackcheck');
 
+Route::any('/check/decidedDate', [App\Http\Controllers\CheckController::class, "decidedDate"] 
+)->name('decidedDate');
+// Route::get('/check/decidedDate', [App\Http\Controllers\CheckController::class, "decidedDate"] 
+// )->name('decidedDate');
+
+Route::any('/joiners/gainCheck', [App\Http\Controllers\JoinerController::class, "gainCheck"] 
+)->name('gainCheck');
+
 Route::get('/about', function () {
     return view('footer.about');
 })-> name('about');

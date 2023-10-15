@@ -71,7 +71,7 @@ class CheckController extends Controller
             
         }
 
-        return redirect() -> route('dashboard') -> with('notice',$User -> attendance);
+        return redirect() -> route('dashboard') -> with('notice','點名表填寫成功！');
     }
 
     /**

@@ -27,7 +27,7 @@ class JoinerController extends Controller
         $article = Article::find($request -> article_id);
         $article -> send_already = 1;
         $article -> save();
-        return redirect() -> route('dashboard') -> with('notice','');
+        return redirect() -> route('checks.show', $request -> article_id);
     }
 
     /**
@@ -120,7 +120,7 @@ class JoinerController extends Controller
         ]);
         $article -> update($content);
         auth()->user()->joinArticles()->syncWithoutDetaching([$article -> id => $content]);
-        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "資料新增成功");
+        return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "資料修改成功");
     }
 
     /**

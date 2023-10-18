@@ -68,6 +68,7 @@
 							<div class="actions">
 								<button class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("確定修改")}} </button>
 							</div>
+							</form>
 							<div class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 ">	
 								<a href = "{{route('dashboard')}}" > {{__("取消修改")}} </a>
 							</div>
@@ -78,7 +79,6 @@
 
                             </form>
 						</div>
-					</form>
                 </div>
             </div>
         </div>

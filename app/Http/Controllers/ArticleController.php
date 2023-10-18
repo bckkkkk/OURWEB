@@ -43,12 +43,16 @@ class ArticleController extends Controller
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',
+			'image' => '',
             'start_time' => 'required',
             'end_time' => 'required',
             'start_time_event' => 'required',
             'end_time_event' => 'required'
         ]);
-
+		if ($request->hasFile('image')) {
+			$path = $request->file('image')->store('images', 'public');
+			$article->image = $path;            
+		}
         auth() -> user() -> articles() -> create($content);
         return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章新增成功！");
     }
@@ -95,11 +99,21 @@ class ArticleController extends Controller
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',
+			'image' => '',
             'start_time' => 'required',
             'end_time' => 'required',
             'start_time_event' => 'required',
             'end_time_event' => 'required'
         ]);
+		if ($request->hasFile('image')) {
+			 // 如果要更新的文章本身原本有圖片，要先刪掉
+			 if ($article->image) {
+				 //Storage::disk('public')->delete($article->image);
+			 }
+			// 接著不管原先有無圖片，都會把圖片存入
+		   $path = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
+		   $article->image = $path;  
+		}
         $article -> update($content);
         return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章修改成功！");
     }

@@ -20,7 +20,7 @@
 
 					@endif
 
-					<form action = "{{ route('articles.update', $article) }}" method = "post">  
+					<form action = "{{ route('articles.update', $article) }}" method = "post" enctype="multipart/form-data">  
 						@csrf
 						@method('patch')
 						<div class="field my-2 ">
@@ -44,6 +44,15 @@
 								<lable for="" class="mb-2"> {{__("")}} </lable>
 								<textarea name = "summary" rows = "5" class = "w-4/5 m-auto border-gray-300 p-2" >{{ $article -> summary }}</textarea>
 
+							</div>
+						</div>
+						
+						<div class="flex-auto ">
+							<div class="field my-2" ><p>{{__("活動海報")}}</p></div>
+							<div class="field my-2 " >
+								<lable for="" class="mb-2"> {{__("")}} </lable>
+								<img src="{{ asset('storage/' . $article->image) }}" />
+								<input type="file" name="image" >
 							</div>
 						</div>
 

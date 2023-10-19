@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -50,7 +51,7 @@ class ArticleController extends Controller
             'end_time_event' => 'required'
         ]);
 		if ($request->hasFile('image')) {
-			$path = $request->file('image')->store('images', 'public');
+			$path = $request->file('image')->storeAs('images/article_'.$article->id, $request->file('image')->getClientOriginalName(), 'public');
 			$article->image = $path;            
 		}
         auth() -> user() -> articles() -> create($content);
@@ -108,10 +109,10 @@ class ArticleController extends Controller
 		if ($request->hasFile('image')) {
 			 // 如果要更新的文章本身原本有圖片，要先刪掉
 			 if ($article->image) {
-				 //Storage::disk('public')->delete($article->image);
+				 Storage::disk('public')->delete($article->image);
 			 }
-			// 接著不管原先有無圖片，都會把圖片存入
-		   $path = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
+			// 圖片存入
+		   $path = $request->file('image')->storeAs('images/article_'.$article->id, $request->file('image')->getClientOriginalName(), 'public');
 		   $article->image = $path;  
 		}
         $article -> update($content);

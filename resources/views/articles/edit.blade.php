@@ -46,15 +46,6 @@
 
 							</div>
 						</div>
-						
-						<div class="flex-auto ">
-							<div class="field my-2" ><p>{{__("活動海報")}}</p></div>
-							<div class="field my-2 " >
-								<lable for="" class="mb-2"> {{__("")}} </lable>
-								<img src="{{ asset('storage/' . $article->image) }}" />
-								<input type="file" name="image" >
-							</div>
-						</div>
 
 						<div class="grid gap-6 mb-6 md:grid-cols-6">
 							<div class="col-span-0 lg:col-span-1"></div>
@@ -90,6 +81,19 @@
 							<lable for="" class="mb-2"> {{__("人數上限")}} </lable>
 							<input type = "text" value="{{  $article -> maximum }}" name = "maximum" class = "w-3/12 border-gray-300 p-2 mx-2" placeholder="{{ __('請填入數字(若無可空白)') }}">
 
+						</div>
+
+						<div class="flex-auto ">
+							<div class="field mt-4 " ><p>{{__("活動海報")}}</p></div>
+							<div class="field my-2 " >
+								<div class="flex justify-center items-center ">
+									<img src="{{ asset('storage/' . $article->image) }}" class="max-w-md h-auto"/>
+								</div>
+								<div class="p-6">
+									<lable for="" class="mb-2"> {{__("修改海報")}} </lable>
+									<input dropzone type="file" name="image" class="w-3/12 p-2 mx-2">
+								</div>
+							</div>
 						</div>
 
 						<div class="flex mt-4 space-x-6 justify-center">

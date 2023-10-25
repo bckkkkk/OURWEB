@@ -7,12 +7,48 @@
 	
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg " >
                 <div class="p-6 text-gray-900">
                     <h1 class = 'font-semibold text-3xl py-6 text-center'> {{ $article->title }}</h1>
                     <p class = "text-lg text-gray-700 py-2 px-6 whitespace-pre-wrap leading-relaxed">
                         {{ $article -> content }}
                     </P>
+                    @if($article->image != NULL)
+                    <div class = "text-base text-gray-700 py-2 px-6  leading-relaxed">
+                        {{ __("活動海報") }}
+                    </div>
+
+                    <section class=" flex  items-start">
+                        <button onclick="document.getElementById('myModal').showModal()" id="btn" class="py-2 px-6 ">
+                            <img src="{{ asset('storage/' . $article->image) }}" class="max-w-sm h-auto"/>
+                        </button>
+                    </section>
+
+                    <dialog id="myModal" class="h-8/12 w-11/12 md:w-1/2 md:h-4/6 lg:h-auto p-5 bg-white rounded-md ">
+                            
+                    <div class="flex flex-col w-full h-auto ">
+                            <!-- Header -->
+                            <div class="flex w-full h-auto justify-center items-center">
+                            <div class="object-right w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold"> </div>
+                            <svg onclick="document.getElementById('myModal').close();" class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
+                                </svg>
+                            <!--Header End-->
+                            </div>
+                            <!-- Modal Content-->
+                            <div class="flex w-full h-auto py-2 px-2 justify-center items-center text-center content-center text-gray-500">
+                                    <div class="py-2 px-6">
+                                        <img src="{{ asset('storage/' . $article->image) }}" class=""/>
+                                    </div>
+                            </div>
+                            <!-- End of Modal Content-->
+                            
+                            
+                            
+                            </div>
+                    </dialog>
+
+                    @endif
 
                     <div class="flex m-6 space-x-6 justify-center">
                     @auth

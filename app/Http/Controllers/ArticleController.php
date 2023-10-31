@@ -44,17 +44,20 @@ class ArticleController extends Controller
             'title' => 'required',
             'content' => 'required|min:50',
 			'summary' => 'required|min:10',
-			'image' => '',
+            'image' => '',
             'start_time' => 'required',
             'end_time' => 'required',
             'start_time_event' => 'required',
             'end_time_event' => 'required'
         ]);
+        $article = auth() -> user() -> articles() -> create($content);
+
 		if ($request->hasFile('image')) {
-			$path = $request->file('image')->storeAs('images/article_'.$article->id, $request->file('image')->getClientOriginalName(), 'public');
-			$article->image = $path;            
-		}
-        auth() -> user() -> articles() -> create($content);
+           // 圖片存入
+          $path = $request->file('image')->storeAs('images/article_'.$article->id, $request->file('image')->getClientOriginalName(), 'public');
+          $article->image = $path;  
+       }
+       $article -> update();
         return redirect() -> intended(RouteServiceProvider::HOME) -> with('notice', "文章新增成功！");
     }
 

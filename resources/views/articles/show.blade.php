@@ -14,9 +14,20 @@
                         {{ $article -> content }}
                     </P>
                     @if($article->image != NULL)
-                    <div class = "text-base text-gray-700 py-2 px-6  leading-relaxed">
-                        {{ __("活動海報") }}
-                    </div>
+                    <!-- <div class="flex">
+                        <div class = "text-base text-gray-700 py-2 px-6  leading-relaxed">
+                            {{ __("活動海報") }}
+                        </div>
+                        <div class=" w-full">
+                            <hr class="w-64 h-px my-8 bg-gray-400 border-0 dark:bg-gray-700">
+                            <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900"> {{ __("活動海報") }}</span>
+                        </div>
+                    </div> -->
+
+                    <div class="inline-flex items-center py-2 px-6 w-full">
+						<hr class="w-64 h-px my-8 bg-gray-400 border-0 dark:bg-gray-700">
+						<span class="absolute px-3 font-medium text-gray-900  bg-white  dark:text-white dark:bg-gray-900">{{ __('活動海報') }}</span>
+					</div>
 
                     <section class=" flex  items-start">
                         <button onclick="document.getElementById('myModal').showModal()" id="btn" class="py-2 px-6 ">
@@ -42,12 +53,9 @@
                                     </div>
                             </div>
                             <!-- End of Modal Content-->
-                            
-                            
-                            
+
                             </div>
                     </dialog>
-
                     @endif
 
                     <div class="flex m-6 space-x-6 justify-center">

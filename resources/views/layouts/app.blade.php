@@ -15,6 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 		
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        
 		
 		<style>
 
@@ -49,15 +50,15 @@
             
             
             @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateX(-3rem);
-            }
+                from {
+                    opacity: 0;
+                    transform: translateX(-3rem);
+                }
 
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             } 
 
         </style>

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
+    use \Conner\Tagging\Taggable;
     use HasFactory;
     use SoftDeletes;
 
@@ -21,7 +22,8 @@ class Article extends Model
 		'summary',
         'maximum',
         'start_time_event',
-        'end_time_event'
+        'end_time_event',
+        'tags'
 	];
 	
     public function user(): belongsTo

@@ -27,7 +27,7 @@
     background-color: rgb(138 159 189 / var(--tw-bg-opacity));
   }
 
-  .bg-indigo-125 {
+.bg-indigo-125 {
     --tw-bg-opacity: 1;
     background-color: rgb(165 180 201 / var(--tw-bg-opacity))
 }
@@ -35,6 +35,11 @@
 .text-indigo-600 {
   --tw-text-opacity: 1;
   color: rgb(93 117 150 / var(--tw-text-opacity));
+}
+
+.border-indigo-150 {
+  --tw-border-opacity: 1;
+  border-color: rgb(138 159 189 / var(--tw-border-opacity));
 }
 
   

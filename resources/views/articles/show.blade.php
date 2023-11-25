@@ -9,7 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg " >
                 <div class="p-6 text-gray-900">
-                    <h1 class = 'font-semibold text-3xl py-6 text-center'> {{ $article->title }}</h1>
+                    <div class = 'font-semibold text-3xl py-6 text-center'> {{ $article->title }}</div>
+
+                    <div class="mx-4 text-right">
+                            @foreach($article->tags as $tag)
+                                <a href="{{ route('tagspage', $tag->slug) }}" class="bg-gray-200 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"># {!! $tag->name !!}</a>
+                            @endforeach
+                    </div>
+
                     <p class = "text-lg text-gray-700 py-2 px-6 whitespace-pre-wrap leading-relaxed">
                         {{ $article -> content }}
                     </P>

@@ -35,6 +35,11 @@ Route::any('/check/decidedDate', [App\Http\Controllers\CheckController::class, "
 Route::any('/joiners/gainCheck', [App\Http\Controllers\JoinerController::class, "gainCheck"] 
 )->name('gainCheck');
 
+//Route::any('/tags', [\App\Http\Controllers\ArticleController::class, "tagspage"] 
+//)->name('tagspage');
+
+Route::get('articles/tag/{tag:slug}', [App\Http\Controllers\ArticleController::class, 'tagspage'])->name('tagspage');
+
 Route::get('/about', function () {
     return view('footer.about');
 })-> name('about');

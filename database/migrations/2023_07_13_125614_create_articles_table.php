@@ -17,6 +17,7 @@ return new class extends Migration
 			$table->text('content');
 			$table->text('summary');
 			$table->text('image')->nullable();
+            $table->string('tags');
 			$table->date('start_time');
             $table->date('end_time');
             $table->date('start_time_event');

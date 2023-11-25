@@ -160,6 +160,17 @@
 									multiUploadDeleteButton.classList.remove("z-100", "p-2", "my-auto");
 								}
 							</script>
+
+							<div class="form-group">
+								<label>Tags : <span class="text-danger">*</span></label>
+								<br>
+								<input type="text" data-role="tagsinput" name="tags" class="form-control tags">
+								<br>
+								@if ($errors->has('tags'))
+									<span class="text-danger">{{ $errors->first('tags') }}</span>
+								@endif
+							</div>
+							
 						</div>
 
 						<div class="flex mt-4 space-x-6 justify-center">

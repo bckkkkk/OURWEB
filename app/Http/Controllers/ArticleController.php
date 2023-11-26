@@ -15,18 +15,31 @@ class ArticleController extends Controller
      * 設定哪項功能不需登錄即可查看
      */
     public function __construct(){
-        $this->middleware('auth')->except(methods:['index', 'show', 'tagspage']);
+        $this->middleware('auth')->except(methods:['index', 'show', 'tagspage', 'showalltags']);
     }
 
     /**
-     * show all tags and article with that tag
+     * show article with that tag
      */
     public function tagspage(Tag $tag)
     {
         $alltags = Article::existingTags();
         $passtaged = $tag -> slug ;
-        $articles = Article::withAnyTag([$passtaged]) ->get();   
-        return view('articles.tags', ['alltags' => $alltags, 'articles' => $articles, 'passtaged' => $passtaged]);
+        $articles = Article::withAnyTag([$passtaged]) ->get();
+        $ifall = 0;   
+        return view('articles.tags', ['alltags' => $alltags, 'articles' => $articles, 'passtaged' => $passtaged, 'ifall' => $ifall]);
+    }
+
+    /**
+     * show all tags
+     */
+    public function showalltags()
+    {
+        $alltags = Article::existingTags();
+        $passtaged = "1";
+        $articles = Article::all();
+        $ifall = 1;  
+        return view('articles.tags', ['alltags' => $alltags, 'articles' => $articles, 'passtaged' => $passtaged, 'ifall' => $ifall]);
     }
 
     /**

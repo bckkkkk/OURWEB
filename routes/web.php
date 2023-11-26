@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::any('/articles/alltag', [\App\Http\Controllers\ArticleController::class, "showalltags"])->name('showalltags');
+
 Route::resource('articles',\App\Http\Controllers\ArticleController::class);
 
 
@@ -38,7 +41,7 @@ Route::any('/joiners/gainCheck', [App\Http\Controllers\JoinerController::class, 
 //Route::any('/tags', [\App\Http\Controllers\ArticleController::class, "tagspage"] 
 //)->name('tagspage');
 
-Route::get('articles/tag/{tag:slug}', [App\Http\Controllers\ArticleController::class, 'tagspage'])->name('tagspage');
+Route::get('/articles/tag/{tag:slug}', [App\Http\Controllers\ArticleController::class, 'tagspage'])->name('tagspage');
 
 Route::get('/about', function () {
     return view('footer.about');

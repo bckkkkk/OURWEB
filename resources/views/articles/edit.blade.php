@@ -83,11 +83,19 @@
 
 						</div>
 
+						<div class="form-group">
+							<lable for="" class="mb-2"> {{__("標籤類別")}}</lable>
+							<input type="text" data-role="tagsinput" name="tags" class="form-control tags w-3/12 border-gray-300 p-2 mx-2" placeholder="{{ __('請以#作為每一標籤的開頭') }}" value="{{ $articletag }}">
+							@if ($errors->has('tags'))
+								<span class="text-danger">{{ $errors->first('tags') }}</span>
+							@endif
+						</div>
+
 						<div class="flex-auto ">
 							<div class="field mt-4 " ><p>{{__("活動海報")}}</p></div>
 							<div class="field my-2 " >
 								<div class="flex justify-center items-center ">
-									<img src="{{ asset('storage/' . $article->image) }}" class="max-w-md h-auto"/>
+									<img src="{{ asset('storage/' . $article->image) }}" onerror="this.onerror=null; this.src='{{asset('storage/images/icon/imageNotFound.png')}}';" class="max-w-md h-auto"/>
 								</div>
 							    <div class="inline-flex items-center justify-center w-full">
 								<hr class="w-64 h-px my-8 bg-gray-400 border-0 dark:bg-gray-700">
@@ -175,22 +183,11 @@
 								}
 							</script>
 
-							<div class="form-group">
-								<label>Tags : <span class="text-danger">*</span></label>
-								<br>
-								<input type="text" data-role="tagsinput" name="tags" class="form-control tags" value="{{ $article->tagged }}">
-								<br>
-								@if ($errors->has('tags'))
-									<span class="text-danger">{{ $errors->first('tags') }}</span>
-								@endif
-							</div>
-
 						</div>
 
 						<div class="flex mt-4 space-x-6 justify-center">
 							<div class="actions">
 								<button type = "submit" class="px-3 py-1 rounded bg-indigo-150 text-white hover:bg-indigo-250"> {{__("修改活動內容")}} </button>
-
 							</div>
 							<div class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 ">	
 								<a href = "{{route('dashboard')}}" > {{__("取消修改")}} </a>

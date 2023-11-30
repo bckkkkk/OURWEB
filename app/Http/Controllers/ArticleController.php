@@ -23,7 +23,7 @@ class ArticleController extends Controller
      */
     public function tagspage(Tag $tag)
     {
-        $alltags = Article::existingTags();
+        $alltags = \Conner\Tagging\Model\Tag::orderBy('count', 'desc') -> get();
         $passtaged = $tag -> slug ;
         $articles = Article::withAnyTag([$passtaged]) ->get();
         $ifall = 0;   
@@ -35,9 +35,9 @@ class ArticleController extends Controller
      */
     public function showalltags()
     {
-        $alltags = Article::existingTags();
+        $alltags = \Conner\Tagging\Model\Tag::orderBy('count', 'desc') -> get();
         $passtaged = "1";
-        $articles = Article::all();
+        $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(10);
         $ifall = 1;  
         return view('articles.tags', ['alltags' => $alltags, 'articles' => $articles, 'passtaged' => $passtaged, 'ifall' => $ifall]);
     }
@@ -123,8 +123,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $articletag = $article->tagNames();
+        $articletag = implode('#', $articletag);
+        $articletag = '#'.$articletag;
         $article = auth() -> user() -> articles -> find($article);
-        return view('articles.edit', ['article' => $article]);
+        return view('articles.edit', ['article' => $article, 'articletag' => $articletag]);
     }
 
     /**

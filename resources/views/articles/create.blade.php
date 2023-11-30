@@ -79,6 +79,14 @@
 							<input type = "text" value="{{ old('maximum') }}" name = "maximum" class = "w-3/12 border-gray-300 p-2 mx-2" placeholder="{{ __('請填入數字(若無可空白)') }}">
 						</div>
 
+						<div class="form-group">
+							<lable for="" class="mb-2"> {{__("標籤類別")}}</lable>
+							<input type="text" data-role="tagsinput" name="tags" class="form-control tags w-3/12 border-gray-300 p-2 mx-2" placeholder="{{ __('請以#作為每一標籤的開頭') }}">
+							@if ($errors->has('tags'))
+								<span class="text-danger">{{ $errors->first('tags') }}</span>
+							@endif
+						</div>
+
 						<div class="field mt-6" >
 							<lable for="" class="field my-2"> {{__("活動海報")}} </lable>
 							<div id="images-container"></div>
@@ -160,16 +168,6 @@
 									multiUploadDeleteButton.classList.remove("z-100", "p-2", "my-auto");
 								}
 							</script>
-
-							<div class="form-group">
-								<label>Tags : <span class="text-danger">*</span></label>
-								<br>
-								<input type="text" data-role="tagsinput" name="tags" class="form-control tags">
-								<br>
-								@if ($errors->has('tags'))
-									<span class="text-danger">{{ $errors->first('tags') }}</span>
-								@endif
-							</div>
 							
 						</div>
 

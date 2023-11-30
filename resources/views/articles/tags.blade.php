@@ -13,23 +13,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class="mb-6 bg-gray-400 shadow-sm sm:rounded-lg divide-y">
                 <div class="text-lg p-6 text-gray-900 ">
-                    <div class="flex">
+                    <div class="flex flex-wrap">
                         @if($ifall == 1)
-                        <div>
+                        <div class="mx-2 mb-2">
                             <a href="{{ route('showalltags') }}" class="whitespace-nowrap bg-gray-200 text-gray-900 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"># {{ __("All") }}</a>
                         </div>
                         @else
-                        <div>
+                        <div class="mx-2 mb-2">
                             <a href="{{ route('showalltags') }}" class="whitespace-nowrap bg-white text-gray-900 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"># {{ __("All") }}</a>
                         </div>
                         @endif
                         @foreach($alltags as $tag)
                             @if($tag -> slug != $passtaged)
-                                <div class="mx-2">
+                                <div class="mx-2 mb-2">
                                     <a href="{{ route('tagspage', $tag->slug) }}" class="whitespace-nowrap bg-white text-gray-900 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"># {{$tag -> name}}</a>
                                 </div>
                             @else
-                                <div class="mx-2">
+                                <div class="mx-2 mb-2">
                                     <a href="{{ route('tagspage', $tag->slug) }}" class="whitespace-nowrap bg-gray-200 text-gray-900 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"># {{$tag -> name}}</a>
                                 </div>
                             @endif
@@ -38,6 +38,7 @@
                     </div>
                 </div>
             </div>
+
             @foreach($articles as $article)
                 <div class="my-2">
                 <div class="bg-white  shadow-sm sm:rounded-lg divide-y">

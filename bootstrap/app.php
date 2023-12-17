@@ -52,4 +52,7 @@ $app->singleton(
 |
 */
 
+$app->alias('mail.manager', Illuminate\Mail\MailManager::class);
+$app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);
+
 return $app;

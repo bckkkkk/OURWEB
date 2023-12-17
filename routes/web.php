@@ -85,6 +85,9 @@ Route::resource('allow',\App\Http\Controllers\AllowController::class)
 Route::resource('checks',\App\Http\Controllers\CheckController::class)
     ->only(['show', 'update', 'store']);
 
+Route::resource('mails',\App\Http\Controllers\MailController::class)
+    ->only(['store']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -38,6 +38,9 @@ Route::any('/check/decidedDate', [App\Http\Controllers\CheckController::class, "
 Route::any('/joiners/gainCheck', [App\Http\Controllers\JoinerController::class, "gainCheck"] 
 )->name('gainCheck');
 
+Route::any('/search', [App\Http\Controllers\ArticleController::class, "search"] 
+)->name('search');
+
 //Route::any('/tags', [\App\Http\Controllers\ArticleController::class, "tagspage"] 
 //)->name('tagspage');
 

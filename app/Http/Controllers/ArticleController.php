@@ -15,7 +15,25 @@ class ArticleController extends Controller
      * 設定哪項功能不需登錄即可查看
      */
     public function __construct(){
-        $this->middleware('auth')->except(methods:['index', 'show', 'tagspage', 'showalltags']);
+        $this->middleware('auth')->except(methods:['index', 'show', 'tagspage', 'showalltags', 'search']);
+    }
+
+    /**
+     * show article when search
+     */
+    public function search(Request $request)
+    {
+        $where = function ($query) use ($request)
+        {
+            if($request -> has('keyword') and $request->keyword !='')
+            {
+                $searchfor = '%' . $request->keyword .'%';
+                $query -> where('title', 'like', $searchfor);
+            }
+        };
+        $keyword = $request->keyword;
+        $articles = Article::where($where)->orderBy('start_time', 'desc')->paginate(10);
+        return view('articles.index', ['articles' => $articles, 'keyword' => $keyword]);
     }
 
     /**
@@ -48,7 +66,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::with('user')->orderBy('start_time', 'desc')->paginate(10);
-        return view('articles.index', ['articles' => $articles]);
+        $keyword = '';
+        return view('articles.index', ['articles' => $articles, 'keyword' => $keyword]);
     }
 
     /**

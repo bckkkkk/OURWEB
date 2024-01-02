@@ -65,10 +65,16 @@
                                     <td class="px-6 py-2"> {{ $joiner -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $joiner -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm whitespace-nowrap lg:whitespace-pre-wrap"> {{ $joiner -> pivot -> note }} </td>
-                                    @if(($joiner -> absence)/($joiner -> attendance) >= 0.5)
-                                    <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $joiner -> absence }} {{__("/")}} {{ $joiner -> attendance }}</td>
+                                    @if($joiner -> attendance != 0)
+                                        @if(($joiner -> absence)/($joiner -> attendance) >= 0.2)
+                                        <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $joiner -> absence }} {{__("/")}} {{ $joiner -> attendance }}</td>
+                                        @else
+                                        <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $joiner -> absence }} {{__("/")}} {{ $joiner -> attendance }}</td>
+                                        @endif
+                                    @elseif($joiner -> attendance != 0 && $joiner -> absence != 0)
+                                        <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $joiner -> absence }} {{__("/")}} {{ $joiner -> attendance }}</td>
                                     @else
-                                    <td class="px-6 py-2  indent-2 text-sm whitespace-nowrap"> {{ $joiner -> absence }} {{__("/")}} {{ $joiner -> attendance }}</td>
+                                        <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $joiner -> absence }} {{__("/")}} {{ $joiner -> attendance }}</td>
                                     @endif
                                 </tr>
                             </tbody>
@@ -111,11 +117,18 @@
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> phone }} </td> 
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $notsurelist -> pivot -> ID_number }} </td>
+                                    
                                     <td class="px-6 py-2 text-sm whitespace-nowrap lg:whitespace-pre-wrap"> {{ $notsurelist -> pivot -> note }} </td>
-                                    @if(($notsurelist -> absence)/($notsurelist -> attendance) >= 0.2)
-                                    <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $notsurelist -> absence }} {{__("/")}} {{ $notsurelist -> attendance }}</td>
+                                    @if($notsurelist -> attendance != 0)
+                                        @if(($notsurelist -> absence)/($notsurelist -> attendance) >= 0.2)
+                                        <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $notsurelist -> absence }} {{__("/")}} {{ $notsurelist -> attendance }}</td>
+                                        @else
+                                        <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $notsurelist -> absence }} {{__("/")}} {{ $notsurelist -> attendance }}</td>
+                                        @endif
+                                    @elseif($notsurelist -> attendance != 0 && $notsurelist -> absence != 0)
+                                        <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $notsurelist -> absence }} {{__("/")}} {{ $notsurelist -> attendance }}</td>
                                     @else
-                                    <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $notsurelist -> absence }} {{__("/")}} {{ $notsurelist -> attendance }}</td>
+                                        <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $notsurelist -> absence }} {{__("/")}} {{ $notsurelist -> attendance }}</td>
                                     @endif
                                 </tr>
                             </tbody>
@@ -159,10 +172,16 @@
                                     <td class="px-6 py-2"> {{ $blacklist -> pivot -> birthday }} </td>
                                     <td class="px-6 py-2"> {{ $blacklist -> pivot -> ID_number }} </td>
                                     <td class="px-6 py-2 text-sm whitespace-nowrap lg:whitespace-pre-wrap"> {{ $blacklist -> pivot -> note }} </td>
-                                    @if(($blacklist -> absence)/($blacklist -> attendance) >= 0.5)
-                                    <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $blacklist -> absence }} {{__("/")}} {{ $blacklist -> attendance }}</td>
+                                    @if($blacklist -> attendance != 0)
+                                        @if(($blacklist -> absence)/($blacklist -> attendance) >= 0.2)
+                                        <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $blacklist -> absence }} {{__("/")}} {{ $blacklist -> attendance }}</td>
+                                        @else
+                                        <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $blacklist -> absence }} {{__("/")}} {{ $blacklist -> attendance }}</td>
+                                        @endif
+                                    @elseif($blacklist -> attendance != 0 && $blacklist -> absence != 0)
+                                        <td class="px-6 py-2  indent-2 text-red-600 text-sm whitespace-nowrap"> {{ $blacklist -> absence }} {{__("/")}} {{ $blacklist -> attendance }}</td>
                                     @else
-                                    <td class="px-6 py-2  indent-2 text-sm whitespace-nowrap"> {{ $blacklist -> absence }} {{__("/")}} {{ $blacklist -> attendance }}</td>
+                                        <td class="px-6 py-2  indent-2 text-sm  whitespace-nowrap"> {{ $blacklist -> absence }} {{__("/")}} {{ $blacklist -> attendance }}</td>
                                     @endif
                                 </tr>
                             </tbody>
